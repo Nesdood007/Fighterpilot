@@ -31,6 +31,9 @@ public class StarGenerator : MonoBehaviour {
     
     private List<GameObject> stars = new List<GameObject>();
     //private int[] starlengths;
+    
+    //Additional Settings
+    public bool lsd = false;
 
 	// Use this for initialization
 	void Start () {
@@ -66,6 +69,9 @@ public class StarGenerator : MonoBehaviour {
             temp.transform.localScale = new Vector3(scale * relLength, scale, 0);
             temp.transform.position = new Vector3(horizSpawn + gameObject.transform.position.x + (scale * relLength), Random.Range(screenTop, screenBottom), 0);
             //print ("Added Star");
+            if (lsd) {
+                temp.GetComponent<Renderer>().material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.75f, 1f);
+            }
             stars.Add(temp);
         }
 	
@@ -82,6 +88,19 @@ public class StarGenerator : MonoBehaviour {
             temp.transform.position = new Vector3(horizSpawn + gameObject.transform.position.x, Random.Range(screenTop, screenBottom), 0);
             //print ("Added Star");
             stars.Add(temp);
+        }
+    }
+    
+    public enum StarStage {Normal = 0, LightSpeed = 1, LSD = 2};
+    
+    //Changes the Stage of Stars being Drawn in the Background.
+    public void ChangeStage(StarStage stg) {
+        if (stg == StarStage.Normal) {
+            
+        } else if (stg == StarStage.LightSpeed) {
+            
+        } else if (stg == StarStage.LSD) {
+            
         }
     }
 

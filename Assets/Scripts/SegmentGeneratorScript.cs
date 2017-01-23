@@ -1,5 +1,5 @@
 ﻿/*  This Generates a Segment based on Variable Input
-
+        This is now depreciated
 */
 
 using UnityEngine;
