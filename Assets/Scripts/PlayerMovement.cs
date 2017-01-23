@@ -24,9 +24,11 @@ public class PlayerMovement : MonoBehaviour {
     //Movement Restrictions for Horizontal Axis
     public float startPoint = 0;
     
+    private BattleStats stats;
+    
 	// Use this for initialization
 	void Start () {
-        
+        stats = gameObject.GetComponent<BattleStats>();
 	}
 	
 	// Update is called once per frame
@@ -35,7 +37,7 @@ public class PlayerMovement : MonoBehaviour {
         float horiz = Input.GetAxis("Horizontal");
         float vert = Input.GetAxis("Vertical");
         
-        if (Mathf.Abs(horiz) >= deadzone || Mathf.Abs(vert) >= deadzone) {
+        if ((Mathf.Abs(horiz) >= deadzone || Mathf.Abs(vert) >= deadzone) && !stats.IsDead()) {
             if ((gameObject.transform.position.y < lowerBound && vert < 0.0) || (gameObject.transform.position.y > upperBound && vert > 0.0)) {
                 //Vert Position is bad
                 vert = 0.0f;
@@ -47,7 +49,7 @@ public class PlayerMovement : MonoBehaviour {
             transform.position += new Vector3(horiz * moveModif * Time.deltaTime, vert * moveModif * Time.deltaTime, 0);
         }
         
-        if (Input.GetButton("Fire1") && Time.time > lastCoolDownTime + coolDown) {
+        if (Input.GetButton("Fire1") && Time.time > lastCoolDownTime + coolDown && !stats.IsDead()) {
             lastCoolDownTime = Time.time;
             Instantiate (projectile, gameObject.transform.position + projOffset, Quaternion.identity);
             projectile.tag = gameObject.tag;

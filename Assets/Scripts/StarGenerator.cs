@@ -50,14 +50,16 @@ public class StarGenerator : MonoBehaviour {
         float scale, localSpeed;
         
         for (int i = 0; i < stars.Count; i++) {
-            scale = stars[i].transform.localScale.y;
-            localSpeed = scale / maxScale;
-            //print (scale + " " + localSpeed);
-            stars[i].transform.position -= new Vector3(localSpeed * speed, 0, 0);
-            if (stars[i].transform.position.x < horizDespawn + gameObject.transform.position.x - (scale * relLength)) {
-                Destroy (stars[i]);
-                stars.RemoveAt(i);
-                i--;
+            if (stars[i] != null){
+                scale = stars[i].transform.localScale.y;
+                localSpeed = scale / maxScale;
+                //print (scale + " " + localSpeed);
+                stars[i].transform.position -= new Vector3(localSpeed * speed, 0, 0);
+                if (stars[i].transform.position.x < horizDespawn + gameObject.transform.position.x - (scale * relLength)) {
+                    Destroy (stars[i]);
+                    stars.RemoveAt(i);
+                    i--;
+                }
             }
         }
         
@@ -102,6 +104,13 @@ public class StarGenerator : MonoBehaviour {
         } else if (stg == StarStage.LSD) {
             
         }
+    }
+    
+    public void DestroyStars() {
+        for (int i = 0; i < stars.Count; i++) {
+            Destroy (stars[i]);
+        }
+        stars.Clear();
     }
 
 }

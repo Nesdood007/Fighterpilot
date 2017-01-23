@@ -68,6 +68,7 @@ public class GameHandler : MonoBehaviour {
             }
             
             if (reset) {
+                starGen.DestroyStars();
                 lgs.ResetGame();
             }
             moveOn = false;
