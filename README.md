@@ -9,3 +9,5 @@ How long will you last?
 Made originally for the Global Game Jam, but the original version vas very broken.
 
 Also, check out the Carolina Gamers' Club. We develop games and do cool stuff!
+
+![screenshot of Title Screen](https://github.com/Nesdood007/Fighterpilot/blob/master/about/images/UnityGame.png)
